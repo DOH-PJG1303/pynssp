@@ -61,8 +61,7 @@ class Token:
         """
         response_content = self.get_api_response(url).content
         if not fromCSV:
-            response_json = loads(response_content)
-            return json_normalize(response_json)
+            return loads(response_content)
         else:
             return read_csv(StringIO(response_content.decode(encoding)))
 

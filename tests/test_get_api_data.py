@@ -20,7 +20,7 @@ def test_get_api_data_credentials(url, url2):
     data = get_api_data(url, profile=handle)
     data2 = get_api_data(url2, profile=handle, fromCSV=True)
 
-    assert isinstance(data, pd.DataFrame)
+    assert isinstance(data, dict)
     assert isinstance(data2, pd.DataFrame)
 
     with pytest.raises(Exception):
@@ -33,7 +33,7 @@ def test_get_api_data_token(url, url2):
     data = get_api_data(url, profile=handle)
     data2 = get_api_data(url2, profile=handle, fromCSV=True)
     
-    assert isinstance(data, pd.DataFrame)
+    assert isinstance(data, dict)
     assert isinstance(data2, pd.DataFrame)
 
     with pytest.raises(Exception):

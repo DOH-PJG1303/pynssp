@@ -215,7 +215,7 @@ def get_essence_data(url, start_date=None, end_date=None, profile=None, **kwargs
     
     if api_type == "timeSeries":
         api_data = profile.get_api_data(url_new, **kwargs)
-        return pd.json_normalize(api_data["timeSeriesData"][0])
+        return pd.json_normalize(pd.json_normalize(api_data)["timeSeriesData"][0])
     elif api_type == "timeSeries/graph":
         return profile.get_api_graph(url_new)
     elif api_type == "tableBuilder/csv":
@@ -224,18 +224,18 @@ def get_essence_data(url, start_date=None, end_date=None, profile=None, **kwargs
         return profile.get_api_data(url_new, **kwargs)
     elif api_type == "dataDetails":
         api_data = profile.get_api_data(url_new, **kwargs)
-        return pd.json_normalize(api_data["dataDetails"][0])
+        return pd.json_normalize(pd.json_normalize(api_data)["dataDetails"][0])
     elif api_type == "dataDetails/csv":
         return profile.get_api_data(url_new, fromCSV=True, **kwargs)
     elif api_type == "summaryData":
         api_data = profile.get_api_data(url_new, **kwargs)
-        return pd.json_normalize(api_data["summaryData"][0])
+        return pd.json_normalize(pd.json_normalize(api_data)["summaryData"][0])
     elif api_type == "alerts/regionSyndromeAlerts":
         api_data = profile.get_api_data(url_new, **kwargs)
-        return pd.json_normalize(api_data["regionSyndromeAlerts"][0])
+        return pd.json_normalize(pd.json_normalize(api_data)["regionSyndromeAlerts"][0])
     elif api_type == "alerts/hospitalSyndromeAlerts":
         api_data = profile.get_api_data(url_new, **kwargs)
-        return pd.json_normalize(api_data["hospitalSyndromeAlerts"][0])
+        return pd.json_normalize(pd.json_normalize(api_data)["hospitalSyndromeAlerts"][0])
     else:
         raise ValueError("URL is not of ESSENCE type. Check your URL or use the `get_api_data()` function instead!")
 
